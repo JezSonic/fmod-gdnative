@@ -121,7 +121,7 @@ jobs:
           mkdir fmod && cd fmod
           python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} linux
           tar -xvf ${{env.FMOD_EXECUTABLE}}
-          mv fmodstudioapi20002linux/api linux
+          mv fmodstudioapi20109linux/api linux
           cd ../../
 
       # The `godot-cpp`-repository is currently cloned inside of the project folder.
@@ -251,7 +251,7 @@ jobs:
           mkdir fmod && cd fmod
           python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} android
           tar -xvf ${{env.FMOD_EXECUTABLE}}
-          mv fmodstudioapi20002android/api android
+          mv fmodstudioapi20109android/api android
           cd ../../
 
       # The `godot-cpp`-repository is currently cloned inside of the project folder.
@@ -357,7 +357,7 @@ jobs:
     runs-on: macos-latest
     needs: [macos-compilation]
     env:
-      FMOD_EXECUTABLE: fmodstudioapi20002osx.dmg
+      FMOD_EXECUTABLE: fmodstudioapi20109osx.dmg
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -386,7 +386,7 @@ jobs:
           cd ..
           mkdir libs && cd libs
           mkdir fmod && cd fmod
-          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMODUSER}} ${{secrets.FMODPASS}} osx
+          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} osx
           hdiutil attach ${{env.FMOD_EXECUTABLE}}
           cp -r "/Volumes/FMOD Programmers API Mac/FMOD Programmers API/api" osx
           cd ../../
@@ -423,8 +423,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: test3
+          release_name: Release ${{ github.ref
           body: |
             Changes in this Release
             - First Change
@@ -442,13 +442,11 @@ jobs:
 
       - name: Copy Libraries to Libs Folder
         run: |
-          cp windows/libGodotFmod.windows.release.64.dll demo/addons/fmod/libs/windows/
-          cp linux/libGodotFmod.linux.release.64.so demo/addons/fmod/libs/linux/
-          cp osx/libGodotFmod.osx.release.64.dylib demo/addons/fmod/libs/osx/
-          cp android/armeabi-v7a/libGodotFmod.android.release.armeabi-v7a.so demo/addons/fmod/libs/android/armeabi_v7a/
-          cp android/arm64-v8a/libGodotFmod.android.release.arm64-v8a.so demo/addons/fmod/libs/android/arm64_v8a/
-          cp ios/libGodotFmod.ios.release.arm64.a demo/addons/fmod/libs/iOS/
-          cp ios/libgodot-cpp.ios.release.arm64.a demo/addons/fmod/libs/iOS/
+          cp windows demo/addons/fmod/libs/windows/
+          cp linux demo/addons/fmod/libs/linux/
+          cp osx demo/addons/fmod/libs/osx/
+          cp android/ demo/addons/fmod/libs/android/
+          cp ios/ demo/addons/fmod/libs/iOS/
           cd demo/addons/
           zip -r fmod.zip fmod/
 
