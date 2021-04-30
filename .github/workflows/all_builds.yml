@@ -415,7 +415,6 @@ jobs:
     name: Release
     runs-on: "ubuntu-20.04"
     needs: [windows-compilation, linux-compilation, macos-compilation, ios-compilation, android-compilation, test]
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps:
       - name: Create Release
         id: create_release
