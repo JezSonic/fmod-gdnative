@@ -49,7 +49,7 @@ jobs:
           cd ..
           New-Item -ItemType directory -Path libs; cd libs
           New-Item -ItemType directory -Path fmod; cd fmod
-          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMODUSER}} ${{secrets.FMODPASS}} windows
+          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} windows
           7z x ${{env.FMOD_EXECUTABLE}}
           mv api/ windows
           cd ../../
@@ -119,7 +119,7 @@ jobs:
           cd ..
           mkdir libs && cd libs
           mkdir fmod && cd fmod
-          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMODUSER}} ${{secrets.FMODPASS}} linux
+          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} linux
           tar -xvf ${{env.FMOD_EXECUTABLE}}
           mv fmodstudioapi20002linux/api linux
           cd ../../
@@ -182,7 +182,7 @@ jobs:
           cd ..
           mkdir libs && cd libs
           mkdir fmod && cd fmod
-          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMODUSER}} ${{secrets.FMODPASS}} osx
+          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} osx
           hdiutil attach ${{env.FMOD_EXECUTABLE}}
           cp -r "/Volumes/FMOD Programmers API Mac/FMOD Programmers API/api" osx
           cd ../../
@@ -249,7 +249,7 @@ jobs:
           cd ..
           mkdir libs && cd libs
           mkdir fmod && cd fmod
-          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMODUSER}} ${{secrets.FMODPASS}} android
+          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} android
           tar -xvf ${{env.FMOD_EXECUTABLE}}
           mv fmodstudioapi20002android/api android
           cd ../../
@@ -317,7 +317,7 @@ jobs:
           cd ..
           mkdir libs && cd libs
           mkdir fmod && cd fmod
-          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMODUSER}} ${{secrets.FMODPASS}} ios
+          python ../../${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} ios
           hdiutil attach ${{env.FMOD_EXECUTABLE}}
           cp -r "/Volumes/FMOD Programmers API iOS/FMOD Programmers API/api" ios
           cd ../../
