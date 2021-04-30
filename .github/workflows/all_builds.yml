@@ -6,6 +6,8 @@ on:
       - "v*"
   pull_request_target:
     branches: "*"
+  workflow_dispatch:
+    
 
 # Global Settings
 env:
