@@ -78,6 +78,11 @@ jobs:
         with:
           name: windows
           path: bin/libGodotFmod.windows.release.64.dll
+     - name: Upload Artifact
+         uses: actions/upload-artifact@v2
+         with:
+           name: windows-api
+           path: windows/
 
   linux-compilation:
     name: Linux Compilation
@@ -148,6 +153,11 @@ jobs:
         with:
           name: linux
           path: bin/libGodotFmod.linux.release.64.so
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: linux-api
+          path: linux/
 
   macos-compilation:
     name: MacOS Compilation
@@ -211,7 +221,11 @@ jobs:
         with:
           name: osx
           path: bin/libGodotFmod.osx.release.64.dylib
-
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: osx-api
+          path: osx/
   android-compilation:
     name: Android Compilation
     runs-on: "ubuntu-20.04"
@@ -351,6 +365,7 @@ jobs:
           path: |
             bin/libGodotFmod.ios.release.arm64.a
             bin/libgodot-cpp.ios.release.arm64.a
+            ios/
 
   test:
     name: GUT Test
