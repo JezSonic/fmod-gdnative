@@ -78,11 +78,11 @@ jobs:
         with:
           name: windows
           path: bin/libGodotFmod.windows.release.64.dll
-     - name: Upload Artifact
-         uses: actions/upload-artifact@v2
-         with:
-           name: windows-api
-           path: windows/
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows-api
+          path: windows/
 
   linux-compilation:
     name: Linux Compilation
