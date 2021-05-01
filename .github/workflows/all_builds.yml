@@ -82,7 +82,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: windows-api
-          path: libs/
+          path: libs/fmod/*
 
   linux-compilation:
     name: Linux Compilation
