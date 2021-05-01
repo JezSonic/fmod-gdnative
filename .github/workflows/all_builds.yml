@@ -440,13 +440,13 @@ jobs:
           python --version
           scons --version
       - name: Download FMOD
-      - run: |
+        run: |
           python get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} osx
           python get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} windows
           python get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} linux
           python get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} ios
       - name: Unzip FMOD
-      - run: |
+        run: |
           tar -xvf fmodstudioapi20109linux.tar.gz
           7z x fmodstudioapi20109win-installer.exe
           zip -r $GITHUB_WORKSPACE -i FMOD_API.zip
