@@ -82,7 +82,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: windows-api
-          path: windows/
+          path: libs/
 
   linux-compilation:
     name: Linux Compilation
@@ -157,7 +157,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: linux-api
-          path: linux/
+          path: libs/
 
   macos-compilation:
     name: MacOS Compilation
@@ -225,7 +225,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: osx-api
-          path: osx/
+          path: libs/
   android-compilation:
     name: Android Compilation
     runs-on: "ubuntu-20.04"
@@ -365,7 +365,7 @@ jobs:
           path: |
             bin/libGodotFmod.ios.release.arm64.a
             bin/libgodot-cpp.ios.release.arm64.a
-            ios/
+            libs/
 
   test:
     name: GUT Test
@@ -437,8 +437,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: test4
-          release_name: Release test4
+          tag_name: test5
+          release_name: Release test5
           body: |
             Changes in this Release
             - First Change
