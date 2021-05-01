@@ -441,11 +441,11 @@ jobs:
 
       - name: Copy Libraries to Libs Folder
         run: |
-          cp windows demo/addons/fmod/libs/windows/
-          cp linux demo/addons/fmod/libs/linux/
-          cp osx demo/addons/fmod/libs/osx/
-          cp android/ demo/addons/fmod/libs/android/
-          cp ios/ demo/addons/fmod/libs/iOS/
+          cp -r windows demo/addons/fmod/libs/windows/
+          cp -r linux demo/addons/fmod/libs/linux/
+          cp -r osx demo/addons/fmod/libs/osx/
+          cp -r android/ demo/addons/fmod/libs/android/
+          cp -r ios/ demo/addons/fmod/libs/iOS/
           cd demo/addons/
           zip -r fmod.zip fmod/
 
