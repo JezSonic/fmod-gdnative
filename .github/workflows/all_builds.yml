@@ -149,17 +149,11 @@ jobs:
           cd ../${{env.PROJECT_FOLDER}}
           scons platform=linux target=${{env.TARGET}}
           cd $GITHUB_WORKSPACE
-          zip -r $GITHUB_WORKSPACE/ fmod.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: linux
           path: bin/libGodotFmod.linux.release.64.so
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: linux-api
-          path: fmod.zip
 
   macos-compilation:
     name: MacOS Compilation
@@ -427,7 +421,40 @@ jobs:
           cd demo
           chmod +x run_tests.sh
           ./run_tests.sh ../Godot.app/Contents/MacOS/Godot
-
+  api-copy:
+    name: API Copy
+    runs-on: "ubuntu-20.04"
+    needs: [windows-compilation, linux-compilation, macos-compilation, ios-compilation]
+    steps:
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.x'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+      - name: Configuring Python packages
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -m pip install scons requests
+          python --version
+          scons --version
+      - name: Download FMOD
+      - run: |
+          python get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} osx
+          python get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} windows
+          python get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} linux
+          python get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} ios
+      - name: Unzip FMOD
+      - run: |
+          tar -xvf fmodstudioapi20109linux.tar.gz
+          7z x fmodstudioapi20109win-installer.exe
+          zip -r $GITHUB_WORKSPACE -i FMOD_API.zip
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: FMOD-API
+          path: FMOD_API.zip
   release:
     name: Release
     runs-on: "ubuntu-20.04"
