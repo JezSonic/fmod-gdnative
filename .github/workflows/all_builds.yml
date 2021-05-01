@@ -422,8 +422,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: test3
-          release_name: Release test3
+          tag_name: test4
+          release_name: Release test4
           body: |
             Changes in this Release
             - First Change
