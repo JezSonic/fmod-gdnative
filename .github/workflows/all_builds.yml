@@ -53,6 +53,7 @@ jobs:
           7z x ${{env.FMOD_EXECUTABLE}}
           mv api/ windows
           cd ../../
+           
 
       # The `godot-cpp`-repository is currently cloned inside of the project folder.
       # This is a limitation of the checkout action and will be fixed in PR#388...
@@ -72,7 +73,7 @@ jobs:
           scons platform=windows bits=64 target=${{env.TARGET}} generate_bindings=yes -j4
           cd ../${{env.PROJECT_FOLDER}}
           scons platform=windows target=${{env.TARGET}}
-
+          zip -r $GITHUB_WORKSPACE/ fmod.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
@@ -82,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: windows-api
-          path: libs/fmod/*
+          path: fmod.zip
 
   linux-compilation:
     name: Linux Compilation
