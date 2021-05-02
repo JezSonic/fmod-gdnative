@@ -451,7 +451,7 @@ jobs:
         run: |
           tar -xvf fmodstudioapi20109linux.tar.gz
           7z x fmodstudioapi20109win-installer.exe
-          zip -r $GITHUB_WORKSPACE -i FMOD_API.zip
+          zip -r FMOD_API.zip $GITHUB_WORKSPACE/
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
@@ -485,9 +485,9 @@ jobs:
           python $GITHUB_WORKSPACE/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} ios
       - name: Unzip FMOD
         run: |
-          tar -xvf fmodstudioapi20109linux.tar.gz
-          7z x fmodstudioapi20109win-installer.exe
-          zip -r $GITHUB_WORKSPACE -i FMOD_API.zip
+          hdiutil attach fmodstudioapi20109osx.dmg
+          hdiutil attach fmodstudioapi20109ios.dmg
+          zip -r FMOD_API_OSX.zip "/Volumes/"
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
