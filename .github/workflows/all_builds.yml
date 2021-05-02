@@ -487,8 +487,8 @@ jobs:
         run: |
           hdiutil attach fmodstudioapi20109osx.dmg
           hdiutil attach fmodstudioapi20109ios.dmg
-          zip -r FMOD_API_OSX.zip "/Volumes/Volumes/FMOD Programmers API Mac/FMOD Programmers API/"
-          zip -r FMOD_API_iOS.zip "/Volumes/Volumes/FMOD Programmers API iOS/FMOD Programmers API/"
+          zip -r FMOD_API_OSX.zip -i "/Volumes/Volumes/FMOD Programmers API Mac/FMOD Programmers API/"
+          zip -r FMOD_API_iOS.zip -i "/Volumes/Volumes/FMOD Programmers API iOS/FMOD Programmers API/"
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
