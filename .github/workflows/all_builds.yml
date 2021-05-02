@@ -441,8 +441,8 @@ jobs:
           scons --version
       - name: Download FMOD
         run: |
-          python ${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} windows
-          python ${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} linux
+          python $GITHUB_WORKSPACE/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} windows
+          python $GITHUB_WORKSPACE/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} linux
       - name: Unzip FMOD
         run: |
           tar -xvf fmodstudioapi20109linux.tar.gz
@@ -473,8 +473,8 @@ jobs:
           scons --version
       - name: Download FMOD
         run: |
-          python ${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} osx
-          python ${{env.PROJECT_FOLDER}}/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} ios
+          python $GITHUB_WORKSPACE/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} osx
+          python $GITHUB_WORKSPACE/get_fmod.py ${{secrets.FMOD_USER}} ${{secrets.FMOD_PASS}} ios
       - name: Unzip FMOD
         run: |
           tar -xvf fmodstudioapi20109linux.tar.gz
